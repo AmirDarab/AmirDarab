@@ -1,0 +1,173 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1.5;
+    font-family:estedad_medium;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*fonts*/
+
+@font-face {
+    font-family:estedad_bold;
+    src: url("../fonts/Estedad-Bold.ttf");
+}
+@font-face {
+    font-family:estedad_medium;
+    src: url("../fonts/Estedad-Medium.ttf");
+}
+@font-face {
+    font-family:estedad_regular;
+    src: url("../fonts/Estedad-Regular.ttf");
+}
+.svg_pack{
+    display: none;
+}
+.header{
+    text-align: center;
+    margin-top: 85px;
+}
+.titel{
+font-size: 30px;
+font-family:estedad_bold;
+}
+.img-head{
+    margin-top: 15px;
+    margin-bottom: 35px;
+}
+.loadmore_conteainer{
+    max-width: 1008px;
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+    justify-content: center;
+    align-items: center;
+   
+}
+.loadmore{
+    position: relative;
+    overflow: hidden;
+    height: 288px;
+    direction: ltr;
+    text-align: right;
+    
+}
+.loadmore > p{
+margin-top: 12px;
+}
+.gardient__bgac{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    background: #ffffff;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    height: 158px;
+}
+.btn__text2{
+    display: none;
+}
+.svg__content > svg{
+    width: 48px;
+    height: 48px;
+    color: #ffffff;
+}
+button{
+    width: 302px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #EB5E28;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    gap: 15px;
+    font-family:estedad_regular;
+    cursor:pointer;
+}
+button > svg {
+    width: 24px;
+    height: 24px;
+}
+.svg_2{
+    display: none;
+}
+.content--open .gardient__bgac{
+display: none;
+}
+.content--open .loadmore{
+   height: 500px;
+   overflow-y: scroll;
+    padding: 8px;
+}
+.content--open .content__btn{
+    background-color: #ffffff;
+    border: #EB5E28 1.5px solid;
+    color: #EB5E28;
+    margin-top: 24px;
+}
+.content--open .btn__text1{
+    display: none;
+}
+.content--open .btn__text2{
+    display: block;
+}
+.content--open .svg_2{
+    display: block;
+    margin-right: -37px;
+}
+.loadmore::-webkit-scrollbar {
+  width: 10px;
+ 
+}
+
+/* Track */
+.loadmore::-webkit-scrollbar-track {
+  background:none;
+}
+
+/* Handle */
+.loadmore::-webkit-scrollbar-thumb {
+  background: #D9D9D9;
+  border-radius: 50px;
+  direction: ltr;
+}
