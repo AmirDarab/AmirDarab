@@ -26,7 +26,7 @@
 | Project | Description | Live Demo |
 |---|---|---|
 | Header | Website header design | [View](	https://amirdarab.github.io/AmirDarab/Header/) |
-| Card | Card component design | [View](https://amirdarab.github.io/AmirDarab/Card/) |
+| Card | Card component design | [View](<a href="https://amirdarab.github.io/AmirDarab/Card/" target="_blank" rel="noopener noreferrer">Live Demo</a>) |
 | Load More | Load More interface | [View](https://amirdarab.github.io/AmirDarab/Load%20More/) |
 
 ## 📊 GitHub Stats
