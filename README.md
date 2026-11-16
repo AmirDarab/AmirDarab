@@ -1,41 +1,43 @@
-# 🚀 My Front-End Projects
+# 👾 AMIR DARAB
+### `Front-End Developer | Future Full-Stack Developer`
 
-Welcome to my front-end development portfolio!
-
-This repository contains a collection of small web projects built to practice and improve my front-end development skills.
-
-## 🌐 Live Demos
-
-### 1. Header
-A simple website header design.
-
-- [🚀 Live Demo](https://amirdarab.github.io/simple-project-for-web-page/Header/)
-- [📂 Source Code](./Header/)
-
-### 2. Card
-A clean and simple card component design.
-
-- [🚀 Live Demo](https://amirdarab.github.io/simple-project-for-web-page/Card/)
-- [📂 Source Code](./Card/)
-
-### 3. Load More
-A small project demonstrating a Load More interface.
-
-- [🚀 Live Demo](https://amirdarab.github.io/simple-project-for-web-page/Load%20More/)
-- [📂 Source Code](./Load%20More/)
-
-## 🛠️ Technologies
-
-- HTML5
-- CSS3
-- JavaScript
-
-## 👨‍💻 About Me
-
-I'm a beginner front-end developer learning by building practical projects and improving my coding skills every day.
-
-I'm currently focused on mastering JavaScript and building a strong foundation in front-end development.
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=00F7FF&center=true&vCenter=true&width=600&lines=Hello%2C+World!;I+build+things+for+the+web.;Always+learning.+Always+building." alt="Typing SVG" />
+</p>
 
 ---
 
-⭐ Thanks for visiting my repository!
+## 🧠 About Me
+
+- 💻 Passionate about Web Development
+- 🌱 Currently learning JavaScript
+- 🚀 Building practical projects to improve my skills
+- 🎯 Working toward becoming a Full-Stack Developer
+- ⚡ Believe in learning by building
+
+## 🛠️ Tech Stack
+
+<p>
+  <img src="https://skillicons.dev/icons?i=html,css,js,git,github,vscode" />
+</p>
+
+## 🚀 Featured Projects
+
+| Project | Description | Live Demo |
+|---|---|---|
+| Header | Website header design | [View](https://amirdarab.github.io/simple-project-for-web-page/Header/) |
+| Card | Card component design | [View](https://amirdarab.github.io/simple-project-for-web-page/Card/) |
+| Load More | Load More interface | [View](https://amirdarab.github.io/simple-project-for-web-page/Load%20More/) |
+
+## 📊 GitHub Stats
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=AmirDarab&show_icons=true&theme=tokyonight&hide_border=true" height="165" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=AmirDarab&layout=compact&theme=tokyonight&hide_border=true" height="165" />
+</p>
+
+---
+
+<p align="center">
+  <b>「 Keep learning. Keep building. 」</b>
+</p>
