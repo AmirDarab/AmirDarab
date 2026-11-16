@@ -25,9 +25,9 @@
 
 | Project | Description | Live Demo |
 |---|---|---|
-| Header | Website header design | [View](https://amirdarab.github.io/simple-project-for-web-page/Header/) |
-| Card | Card component design | [View](https://amirdarab.github.io/simple-project-for-web-page/Card/) |
-| Load More | Load More interface | [View](https://amirdarab.github.io/simple-project-for-web-page/Load%20More/) |
+| Header | Website header design | [View](	https://amirdarab.github.io/AmirDarab/Header/) |
+| Card | Card component design | [View](https://amirdarab.github.io/AmirDarab/Card/) |
+| Load More | Load More interface | [View](https://amirdarab.github.io/AmirDarab/Load%20More/) |
 
 ## 📊 GitHub Stats
 
