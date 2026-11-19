@@ -26,6 +26,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1.5;
     font-family:estedad_medium;
+   
 }
 ol, ul {
 	list-style: none;
@@ -62,9 +63,10 @@ table {
     src: url("../fonts/YekanBakh-Medium.woff");
 }
 .header{
-padding:  0px;
+padding: 0px;
 background: #fff;
-width:100%;
+max-width:100%;
+width: 1214px;
 height:80px;
 margin: 0 auto;
 display: flex;
@@ -72,9 +74,12 @@ justify-content: space-between;
 align-items: center;
 position: relative;
 z-index: 20;
+margin: 0 auto;
+border-bottom: 1px solid #E1E1E1;
 }
 .container{
-width: 1216px;
+max-width: 1216px;
+width: 1182px;
 margin: 0 auto;
 display: flex;
 justify-content: space-between;
@@ -353,11 +358,107 @@ gap: 4px;
     opacity: 1;
     visibility: visible;
 }
-.content_main{
+
+.content_main {
     background-color: #2EC4B6;
     border-radius: 16px;
-    width: 1216px;
-    height: 338px;
+    width: calc(100% - 32px);
+    max-width: 1216px;
+    margin: 16px auto;
+    height: 300px;
+    position: relative;
+}
+.head__wrap{
+    width: 100%;
+}
+
+
+.nav{
+ display: none;
+ position: fixed;
+ bottom: 24px;
+ left: 16px;
+ right: 16px;
+ background-color: #1D2939;
+ border-radius: 12px;
+}
+.nav_content{
+display: flex;
+justify-content: space-around;
+position: relative;
+}
+.nav_links{
+display: flex;
+gap:34px;
+padding: 12px;
+}
+.nav_link{
+display: flex;
+flex-direction: column;
+align-items: center;
+color: #fff;
+text-decoration: none;
+font-size: 12px;
+width: 49px;
+ gap: 6px;
+}
+.menu_center{
+    width: 64px;
+    height: 64px;
+    background-color: #2EC4B6;
+    border-radius: 100%;
+    border: 10px solid #fff;
     position: absolute;
-    top: 128px;
+    top: -60%;
+    left:42.5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+.nav_link--off{
+    color: #2EC4B6;
+}
+
+
+@media screen and (max-width:780px){
+.menu{
+    display: none;
+}    
+.container{
+    max-width: 100%;
+}
+.header{
+    max-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 28px 20px;
+    box-sizing: border-box;
+}
+}
+@media screen and (max-width:713px) {
+    .header__sin_in{
+    display: none;
+    }
+    .header{
+    max-width: 100%;
+    width: 700px;
+}
+.nav{
+    display:block;
+    
+}
+
+.svg__head__menu{
+    display: block;
+}
+}
+@media screen and (max-width:492px){
+    .menu_center{
+        left:37%;
+    }
+    .nav_content{
+        justify-content: space-between;
+    }
+    
 }
