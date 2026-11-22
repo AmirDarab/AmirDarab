@@ -1,0 +1,191 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1.5;
+    font-family:estedad_medium;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*fonts*/
+
+@font-face {
+    font-family:estedad_bold;
+    src: url("../fonts/Estedad-Bold.ttf");
+}
+@font-face {
+    font-family:estedad_medium;
+    src: url("../fonts/Estedad-Medium.ttf");
+}
+@font-face {
+    font-family:estedad_regular;
+    src: url("../fonts/Estedad-Regular.ttf");
+}
+@font-face {
+  font-family: "Yekan Bakh";
+  src: url("../fonts/YekanBakh-Medium.woff") format("woff");
+  font-weight: 500;
+  font-display: swap;
+}
+/*popup*/
+
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+     font-family: "Yekan Bakh";
+}
+.join_btm_content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 326px;
+    padding: 18px 0;
+    background-color: red;
+    font-family: "Yekan Bakh";
+    color: #fff;
+    border:0;
+    border-radius: 12px;
+    cursor: pointer;
+}
+.join_btm_content > svg{
+    width:24px;
+    height: 24px;
+}
+.overlay{
+    position: fixed;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(0);
+    z-index: 20;
+    transition: opacity .35s ease, visibility .35s, backdrop-filter .35s ease;
+}
+.overlay--show{
+    opacity: 1;
+    visibility: visible;
+    backdrop-filter: blur(5px);
+}
+
+.click_btm_wraperr{
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 22;
+    pointer-events: none;
+    visibility: hidden;
+    transition: visibility 0s .4s;
+}
+.click_btm_wraperr--show{
+    visibility: visible;
+    transition-delay: 0s;
+}
+
+.click_btm{
+    width: 336px;
+    height: 282px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    border-radius: 16px;
+    background-color: #fff;
+    opacity: 0;
+    transform: translateY(40px) scale(.85);
+    transition: transform .5s cubic-bezier(.34, 1.56, .64, 1), opacity .3s ease;
+}
+.click--show{
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.click_btm > img,
+.click_btm > p{
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity .4s ease, transform .5s cubic-bezier(.22, 1, .36, 1);
+}
+.click_btm > img{
+    margin-bottom: 30px;
+    transform: translateY(16px) scale(.6);
+}
+.click--show > img{
+    opacity: 1;
+    transform: none;
+    transition-delay: .15s;
+}
+.click--show > p:nth-of-type(1){ opacity: 1; transform: none; transition-delay: .25s; }
+.click--show > p:nth-of-type(2){ opacity: 1; transform: none; transition-delay: .35s; }
+
+/* دکمه بستن */
+.svg_close{
+    width: 24px;
+    height: 24px;
+    background-color: #1D2939;
+    border-radius: 100%;
+    position: absolute;
+    color: #fff;
+    padding: 9px;
+    top: 0;
+    right: 0;
+    translate: 50% -50%;
+    rotate: -90deg;
+    cursor: pointer;
+    transition: rotate .5s cubic-bezier(.34, 1.56, .64, 1) .2s, background-color .2s;
+}
+.click--show .svg_close{
+    rotate: 0deg;
+}
+.svg_close:hover{
+    background-color: red;
+}
+
+@media (prefers-reduced-motion: reduce){
+    .overlay, .click_btm, .click_btm > *, .svg_close{
+        transition-duration: .01s !important;
+        transition-delay: 0s !important;
+    }
+}

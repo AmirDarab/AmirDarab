@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>popup</title>
+    <link rel="stylesheet" href="./app.css">
+</head>
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+
+  <!-- Arrow Left -->
+  <symbol id="arrow-left" viewBox="0 0 25 24">
+    <path d="M10.07 5.93018L4 12.0002L10.07 18.0702"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-miterlimit="10"
+      stroke-linecap="round"
+      stroke-linejoin="round"/>
+
+    <path opacity="0.4" d="M21 12H4.16998"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-miterlimit="10"
+      stroke-linecap="round"
+      stroke-linejoin="round"/>
+  </symbol>
+
+  <!-- Close -->
+  <symbol id="close" viewBox="0 0 24 24">
+    <path d="M7.7572 7.75732L16.2425 16.2426"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"/>
+
+    <path d="M7.75715 16.2426L16.2424 7.75732"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"/>
+  </symbol>
+
+</svg>
+
+    <div class="join_btm">
+        <button class="join_btm_content">
+            <span>
+                عضویت در خبرنامه
+            </span>
+            <svg>
+                <use href="#arrow-left"></use>
+            </svg>
+        </button>
+    </div>
+    <div class="click_btm_wraperr">
+        <div class="click_btm">
+            <img src="../img/vector.png" alt="">
+            <p>شماره شما ثبت شد
+            <p>وبا موفقیت عضو خبرنامه  شدید:)</p>
+            <svg class="svg_close"><use href="#close"></use></svg>
+        </div>
+    </div>
+    <div class="overlay"></div>
+
+
+    <script>
+        let joinbtm = document.querySelector(".join_btm_content")
+        let click_btm = document.querySelector(".click_btm")
+        let click_btm_wraperr = document.querySelector(".click_btm_wraperr")
+        let overlay = document.querySelector(".overlay")
+        let svgClose = document.querySelector(".svg_close")
+        joinbtm.addEventListener("click",function(){
+            overlay.classList.add("overlay--show")
+            click_btm.classList.add("click--show")
+            click_btm_wraperr.classList.add("click_btm_wraperr--show")
+        })
+        svgClose.addEventListener("click",function(){
+            overlay.classList.remove("overlay--show")
+            click_btm.classList.remove("click--show")
+            click_btm_wraperr.classList.remove("click_btm_wraperr--show")
+        })
+    </script>
+</body>
+</html>
