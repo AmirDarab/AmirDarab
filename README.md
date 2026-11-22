@@ -28,6 +28,7 @@
 | Header | Website header design | [View](	https://amirdarab.github.io/AmirDarab/Header/) |
 | Card | Card component design | [View](	https://amirdarab.github.io/AmirDarab/Card/) |
 | Load More | Load More interface | [View]( https://amirdarab.github.io/AmirDarab/Load%20More/) |
+| popup |popup card | [View]( https://amirdarab.github.io/AmirDarab/popup/) |
 
 ## 📊 GitHub Stats
 
