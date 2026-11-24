@@ -29,6 +29,7 @@
 | Card | Card component design | [View](	https://amirdarab.github.io/AmirDarab/Card/) |
 | Load More | Load More interface | [View]( https://amirdarab.github.io/AmirDarab/Load%20More/) |
 | popup |popup card | [View]( https://amirdarab.github.io/AmirDarab/popup/) |
+| Accordion | [View](https://amirdarab.github.io/AmirDarab/Accordion/)
 
 ## 📊 GitHub Stats
 
