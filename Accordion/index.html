@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion</title>
+    <link rel="stylesheet" href="./app.css">
+</head>
+<body>
+    <!-- sprite آیکون‌ها -->
+    <svg hidden>
+        <symbol id="icon-add" viewBox="0 0 18 18" fill="none">
+            <path opacity="0.4" d="M4.5 9H13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M9 13.5V4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </symbol>
+        <symbol id="icon-minus" viewBox="0 0 18 18" fill="none">
+            <path d="M4.5 9H13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </symbol>
+    </svg>
+
+    <main class="Accordion_list">
+        <div class="Accordion">
+            <button class="Accordion_header" type="button" aria-expanded="false">
+                <span class="Accordion_title">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ؟</span>
+                <span class="Accordion_icon" aria-hidden="true">
+                    <svg class="Accordion_icon-plus"><use href="#icon-add"></use></svg>
+                    <svg class="Accordion_icon-minus"><use href="#icon-minus"></use></svg>
+                </span>
+            </button>
+            <div class="Accordion_panel">
+                <div class="Accordion_panel_inner">
+                    <p class="Accordion_content">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="Accordion">
+            <button class="Accordion_header" type="button" aria-expanded="false">
+                <span class="Accordion_title">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ؟</span>
+                <span class="Accordion_icon" aria-hidden="true">
+                    <svg class="Accordion_icon-plus"><use href="#icon-add"></use></svg>
+                    <svg class="Accordion_icon-minus"><use href="#icon-minus"></use></svg>
+                </span>
+            </button>
+            <div class="Accordion_panel">
+                <div class="Accordion_panel_inner">
+                    <p class="Accordion_content">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="Accordion">
+            <button class="Accordion_header" type="button" aria-expanded="false">
+                <span class="Accordion_title">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ؟</span>
+                <span class="Accordion_icon" aria-hidden="true">
+                    <svg class="Accordion_icon-plus"><use href="#icon-add"></use></svg>
+                    <svg class="Accordion_icon-minus"><use href="#icon-minus"></use></svg>
+                </span>
+            </button>
+            <div class="Accordion_panel">
+                <div class="Accordion_panel_inner">
+                    <p class="Accordion_content">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const accordions = document.querySelectorAll(".Accordion");
+
+        accordions.forEach((accordion, index) => {
+            const header = accordion.querySelector(".Accordion_header");
+            const panel = accordion.querySelector(".Accordion_panel");
+            const panelId = `accordion-panel-${index + 1}`;
+
+            panel.id = panelId;
+            header.setAttribute("aria-controls", panelId);
+
+            header.addEventListener("click", () => {
+                const isOpen = accordion.classList.toggle("Accordion--open");
+                header.setAttribute("aria-expanded", isOpen);
+            });
+        });
+    </script>
+</body>
+</html>
