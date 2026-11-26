@@ -1,0 +1,4 @@
+git add .
+git commit -m "update project"
+git pull --ff-only origin main
+git push origin main
