@@ -1,86 +1,124 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accordion</title>
-    <link rel="stylesheet" href="./app.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>فیلتر محصولات</title>
+  <link rel="stylesheet" href="./app.css">
+  <script src="./app.js" defer></script>
 </head>
 <body>
-    <!-- sprite آیکون‌ها -->
-    <svg hidden>
-        <symbol id="icon-add" viewBox="0 0 18 18" fill="none">
-            <path opacity="0.4" d="M4.5 9H13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M9 13.5V4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </symbol>
-        <symbol id="icon-minus" viewBox="0 0 18 18" fill="none">
-            <path d="M4.5 9H13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </symbol>
-    </svg>
 
-    <main class="Accordion_list">
-        <div class="Accordion">
-            <button class="Accordion_header" type="button" aria-expanded="false">
-                <span class="Accordion_title">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ؟</span>
-                <span class="Accordion_icon" aria-hidden="true">
-                    <svg class="Accordion_icon-plus"><use href="#icon-add"></use></svg>
-                    <svg class="Accordion_icon-minus"><use href="#icon-minus"></use></svg>
-                </span>
+  <!-- آیکون‌ها (sprite) -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <symbol id="icon-filter" viewBox="0 0 24 24" fill="none">
+      <path d="M5.4 2.1h13.2c1.1 0 2 .9 2 2v2.2c0 .8-.5 1.8-1 2.3l-4.3 3.8c-.6.5-1 1.5-1 2.3V19c0 .6-.4 1.4-.9 1.7L12 21.6c-1.3.8-3.1-.1-3.1-1.7v-5.3c0-.7-.4-1.6-.8-2.1l-3.8-4c-.5-.5-.9-1.4-.9-2V4.2c0-1.2.9-2.1 2-2.1Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+      <path opacity=".4" d="M10.93 2.1 6 10" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24" fill="none">
+      <path d="M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12s4.5 10 10 10Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <g opacity=".4">
+        <path d="m9.17 14.83 5.66-5.66M14.83 14.83 9.17 9.17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+    </symbol>
+    <symbol id="icon-chevron" viewBox="0 0 20 20" fill="none">
+      <path d="m16.6 7.46-5.43 5.43a1.65 1.65 0 0 1-2.34 0L3.4 7.46" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </svg>
+
+  <!-- دکمه‌ی باز کردن فیلتر -->
+  <button class="filter-trigger" type="button" data-filter-open aria-haspopup="dialog" aria-controls="filterDialog">
+    <svg class="icon" aria-hidden="true"><use href="#icon-filter"></use></svg>
+    <span>فیلتر</span>
+    <span class="filter-trigger__badge" data-filter-badge hidden></span>
+  </button>
+
+  <!-- پنل فیلتر -->
+  <dialog class="filter" id="filterDialog" aria-labelledby="filterTitle">
+    <form class="filter__form" id="filterForm" novalidate>
+
+      <header class="filter__header">
+        <h2 class="filter__title" id="filterTitle">فیلتر</h2>
+        <button class="icon-btn" type="button" data-filter-close aria-label="بستن فیلتر">
+          <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
+        </button>
+      </header>
+
+      <div class="filter__body">
+
+        <!-- انتخاب رنگ (آکاردئون) -->
+        <section class="accordion" data-accordion>
+          <h3 class="accordion__heading">
+            <button class="row accordion__trigger" type="button" id="colorTrigger"
+                    aria-expanded="false" aria-controls="colorPanel" data-accordion-trigger>
+              <span>انتخاب رنگ</span>
+              <svg class="icon accordion__icon" aria-hidden="true"><use href="#icon-chevron"></use></svg>
             </button>
-            <div class="Accordion_panel">
-                <div class="Accordion_panel_inner">
-                    <p class="Accordion_content">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
-                </div>
+          </h3>
+
+          <div class="accordion__panel" id="colorPanel" role="region" aria-labelledby="colorTrigger">
+            <div class="accordion__inner">
+              <ul class="color-list">
+                <li data-accordion-item>
+                  <label class="option">
+                    <span class="option__swatch" style="--swatch:#7B4800"></span>
+                    <span class="option__text">قهوه‌ای</span>
+                    <input class="checkbox" type="checkbox" name="color" value="brown">
+                  </label>
+                </li>
+                <li data-accordion-item>
+                  <label class="option">
+                    <span class="option__swatch" style="--swatch:#230069"></span>
+                    <span class="option__text">آبی کاربنی</span>
+                    <input class="checkbox" type="checkbox" name="color" value="carbon-blue">
+                  </label>
+                </li>
+                <li data-accordion-item>
+                  <label class="option">
+                    <span class="option__swatch" style="--swatch:#E8F220"></span>
+                    <span class="option__text">زرد</span>
+                    <input class="checkbox" type="checkbox" name="color" value="yellow">
+                  </label>
+                </li>
+                <li data-accordion-item>
+                  <label class="option">
+                    <span class="option__swatch" style="--swatch:#9D0059"></span>
+                    <span class="option__text">صورتی چرک</span>
+                    <input class="checkbox" type="checkbox" name="color" value="dusty-pink">
+                  </label>
+                </li>
+                <li data-accordion-item>
+                  <label class="option">
+                    <span class="option__swatch" style="--swatch:#FF0000"></span>
+                    <span class="option__text">قرمز</span>
+                    <input class="checkbox" type="checkbox" name="color" value="red">
+                  </label>
+                </li>
+              </ul>
             </div>
-        </div>
+          </div>
+        </section>
 
-        <div class="Accordion">
-            <button class="Accordion_header" type="button" aria-expanded="false">
-                <span class="Accordion_title">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ؟</span>
-                <span class="Accordion_icon" aria-hidden="true">
-                    <svg class="Accordion_icon-plus"><use href="#icon-add"></use></svg>
-                    <svg class="Accordion_icon-minus"><use href="#icon-minus"></use></svg>
-                </span>
-            </button>
-            <div class="Accordion_panel">
-                <div class="Accordion_panel_inner">
-                    <p class="Accordion_content">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
-                </div>
-            </div>
-        </div>
+        <!-- سوئیچ‌ها -->
+        <label class="row">
+          <span>فقط کالاهای موجود</span>
+          <input class="switch" type="checkbox" role="switch" name="inStock">
+        </label>
 
-        <div class="Accordion">
-            <button class="Accordion_header" type="button" aria-expanded="false">
-                <span class="Accordion_title">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ؟</span>
-                <span class="Accordion_icon" aria-hidden="true">
-                    <svg class="Accordion_icon-plus"><use href="#icon-add"></use></svg>
-                    <svg class="Accordion_icon-minus"><use href="#icon-minus"></use></svg>
-                </span>
-            </button>
-            <div class="Accordion_panel">
-                <div class="Accordion_panel_inner">
-                    <p class="Accordion_content">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
-                </div>
-            </div>
-        </div>
-    </main>
+        <label class="row">
+          <span>کالاهای تخفیف‌خورده</span>
+          <input class="switch" type="checkbox" role="switch" name="discounted">
+        </label>
 
-    <script>
-        const accordions = document.querySelectorAll(".Accordion");
+      </div>
 
-        accordions.forEach((accordion, index) => {
-            const header = accordion.querySelector(".Accordion_header");
-            const panel = accordion.querySelector(".Accordion_panel");
-            const panelId = `accordion-panel-${index + 1}`;
+      <footer class="filter__footer">
+        <button class="btn btn--primary" type="submit">اعمال فیلتر</button>
+        <button class="btn btn--ghost" type="button" data-filter-reset disabled>حذف فیلترها</button>
+      </footer>
 
-            panel.id = panelId;
-            header.setAttribute("aria-controls", panelId);
+    </form>
+  </dialog>
 
-            header.addEventListener("click", () => {
-                const isOpen = accordion.classList.toggle("Accordion--open");
-                header.setAttribute("aria-expanded", isOpen);
-            });
-        });
-    </script>
 </body>
 </html>

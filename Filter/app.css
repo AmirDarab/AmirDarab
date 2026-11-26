@@ -1,0 +1,163 @@
+@font-face {
+  font-family: "Yekan Bakh";
+  src: url("../fonts/YekanBakh-Medium.woff") format("woff");
+  font-weight: 500;
+  font-display: swap;
+}
+body{
+font-family: "Yekan Bakh";
+}
+.filter__btn_click{
+    width: 376px;
+    height: 666px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    opacity: ;
+    visibility: ;
+    transform: translate(20px); 
+    transition: all 300ms ease;
+    position: relative;
+    top:-49px;
+    right: -5px;
+}
+.filter__btn{
+    background-color:rgba(0, 99, 40, 0.531);
+    max-width: 302px;
+    height: 48px;
+    margin: 0 auto;
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border-radius: 16px;
+}
+.hedaer_filter{
+    display: flex;
+    flex-direction: column;
+    width: 376px;
+    margin: 0 auto;
+}
+.head1{
+    background-color: #EEEEEE;
+}
+.headcontent_filter{
+display: flex;
+justify-content: space-between;
+align-items:center;
+max-width:376px;
+height: 75px;
+ margin-right: 41px;
+}
+.checkbox{
+    width: 42px;
+    height: 24px;
+}
+.toggle {
+    height: 24px;
+    width: 42px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    background-color: #EEEEEE;
+    border-radius:78px;
+    transition: all 130ms linear;
+}
+.toggle input {
+display: none;
+}
+.slider {
+    height: 16px;
+    width: 16px;
+    background-color: #fff;
+    border-radius: 100%;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    transition: all 130ms linear;
+}
+
+.toggle input:checked + .slider{
+  translate:-18px;
+}
+
+.toggle:has(input:checked){
+  background-color: #003566;
+}
+.footer_filter{
+    width: 321px;
+    height: 48px;
+    box-sizing: border-box;
+    background-color: #C9184A;
+    border-radius: 8px;
+    border: none;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 32px;
+    left: 32px;
+    right: 32px;
+}
+.footer_filter > span{
+    color: #fff;
+    font-family: "Yekan Bakh";
+}
+.filter__btn_click--show{
+     opacity: 1;
+    visibility: visible;
+    transform: translate(0);
+}
+.colorselector{
+    padding-right:24px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+.list_item{
+    
+}
+.list_item_flex{
+    
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+.label_item{
+width: 24px;
+height: 24px;
+border-radius: 6px;
+border: 1px solid #E5E5E5;
+cursor: pointer;
+transition: all 150ms ease-in;
+}
+.label_item > input{
+display: none;
+}
+.label_item:has(input:checked){
+    background-color: #003566;
+}
+.item_1::marker{
+    color:#7B4800;
+    font-size: 20px;
+}
+.item_2::marker{
+    color:#230069;
+    font-size: 20px;
+}
+.item_3::marker{
+    color:#E8F220;
+    font-size: 20px;
+}
+.item_4::marker{
+    color:#9D0059;
+    font-size: 20px;
+}
+.item_5::marker{
+    color:#FF0000;
+    font-size: 20px;
+}
