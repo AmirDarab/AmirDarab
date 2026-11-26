@@ -9,7 +9,6 @@
 </head>
 <body>
 
-  <!-- آیکون‌ها (sprite) -->
   <svg class="sprite" aria-hidden="true" focusable="false">
     <symbol id="icon-filter" viewBox="0 0 24 24" fill="none">
       <path d="M5.4 2.1h13.2c1.1 0 2 .9 2 2v2.2c0 .8-.5 1.8-1 2.3l-4.3 3.8c-.6.5-1 1.5-1 2.3V19c0 .6-.4 1.4-.9 1.7L12 21.6c-1.3.8-3.1-.1-3.1-1.7v-5.3c0-.7-.4-1.6-.8-2.1l-3.8-4c-.5-.5-.9-1.4-.9-2V4.2c0-1.2.9-2.1 2-2.1Z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -26,14 +25,12 @@
     </symbol>
   </svg>
 
-  <!-- دکمه‌ی باز کردن فیلتر -->
   <button class="filter-trigger" type="button" data-filter-open aria-haspopup="dialog" aria-controls="filterDialog">
     <svg class="icon" aria-hidden="true"><use href="#icon-filter"></use></svg>
     <span>فیلتر</span>
     <span class="filter-trigger__badge" data-filter-badge hidden></span>
   </button>
 
-  <!-- پنل فیلتر -->
   <dialog class="filter" id="filterDialog" aria-labelledby="filterTitle">
     <form class="filter__form" id="filterForm" novalidate>
 
@@ -46,7 +43,6 @@
 
       <div class="filter__body">
 
-        <!-- انتخاب رنگ (آکاردئون) -->
         <section class="accordion" data-accordion>
           <h3 class="accordion__heading">
             <button class="row accordion__trigger" type="button" id="colorTrigger"
@@ -99,7 +95,6 @@
           </div>
         </section>
 
-        <!-- سوئیچ‌ها -->
         <label class="row">
           <span>فقط کالاهای موجود</span>
           <input class="switch" type="checkbox" role="switch" name="inStock">
