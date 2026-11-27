@@ -26,10 +26,10 @@
 | Project | Description | Live Demo |
 |---|---|---|
 | Header | Website header design | [View](	https://amirdarab.github.io/AmirDarab/Header/) |
-| Form | form login | [View](https://amirdarab.github.io/AmirDarab/form/)|
-| Filter | Filter for Shop | [View](https://amirdarab.github.io/AmirDarab/Filter/)|
+| Form | Website Login Form | [View](https://amirdarab.github.io/AmirDarab/form/)|
+| Filter | Store Product Filters | [View](https://amirdarab.github.io/AmirDarab/Filter/)|
 | Accordion | Accordion for Questions | [View](https://amirdarab.github.io/AmirDarab/Accordion/)|
-| Interaction Hover | Interaction Hover for shoping webdites | [View](https://amirdarab.github.io/AmirDarab/Interaction%20Hover/)|
+| Interaction Hover | Interaction Hover for A product, for example, fruit juice!| [View](https://amirdarab.github.io/AmirDarab/Interaction%20Hover/)|
 | popup |popup card | [View]( https://amirdarab.github.io/AmirDarab/popup/) |
 | Card | Card component design | [View](	https://amirdarab.github.io/AmirDarab/Card/) |
 | Load More | Load More interface | [View]( https://amirdarab.github.io/AmirDarab/Load%20More/) |
