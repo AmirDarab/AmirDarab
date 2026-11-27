@@ -10,13 +10,13 @@
    مسیر نسبت به همین فایل CSS است. اگر پوشه‌ی fonts جای دیگری است، مسیر را عوض کن. */
 @font-face {
   font-family: "Yekan Bakh";
-  src: url("./fonts/YekanBakh-Medium.woff") format("woff");
+  src: url("../fonts/YekanBakh-Medium.woff") format("woff");
   font-weight: 500;
   font-display: swap;
 }
 @font-face {
   font-family: "Yekan Bakh";
-  src: url("./fonts/YekanBakh-Light.woff") format("woff");
+  src: url("../fonts/YekanBakh-Light.woff") format("woff");
   font-weight: 300;
   font-display: swap;
 }
@@ -59,7 +59,7 @@ body {
   display: grid;
   place-items: center;
   padding: 50px 20px;
-  font-family: "Yekan Bakh", Vazirmatn, Tahoma, sans-serif;
+  font-family: "Yekan Bakh";
   font-weight: 500;
   color: var(--ink);
   background: var(--page);
@@ -342,6 +342,8 @@ body {
 .bubble__title {
   padding: 16px 36px 0;
   transition-delay: calc(var(--on) * 0.15s);
+  text-align: center;
+  text-wrap: nowrap;
 }
 
 .bubble__text {
