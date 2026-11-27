@@ -1,0 +1,476 @@
+/* =========================================================
+   آبمیوه طبیعی — Interaction Hover
+   ایده‌ی اصلی: هر کارت یک متغیر --on دارد
+   (۰ = حالت عادی ، ۱ = هاور/فوکوس). بقیه‌ی خصوصیت‌ها با calc
+   از روی --on حساب می‌شوند. پس فقط یک قانون :hover داریم
+   و هر المان با ترنزیشن مخصوص خودش نرم تغییر می‌کند.
+   ========================================================= */
+
+/* ---------- فونت‌ها ----------
+   مسیر نسبت به همین فایل CSS است. اگر پوشه‌ی fonts جای دیگری است، مسیر را عوض کن. */
+@font-face {
+  font-family: "Yekan Bakh";
+  src: url("./fonts/YekanBakh-Medium.woff") format("woff");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Yekan Bakh";
+  src: url("./fonts/YekanBakh-Light.woff") format("woff");
+  font-weight: 300;
+  font-display: swap;
+}
+
+/* ---------- متغیرهای کلی ---------- */
+:root {
+  --page: #fff;
+  --card: #f6f6f6;
+  --ink: #1d1d23;
+  --ink-soft: #6c6c78;
+
+  --smooth: cubic-bezier(0.2, 0.8, 0.2, 1);
+  /* حالت پشتیبان فنر (برای مرورگرهای قدیمی) */
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* فنر واقعی با linear() — کمی از مقصد رد می‌شود و برمی‌گردد */
+@supports (transition-timing-function: linear(0, 1)) {
+  :root {
+    --spring: linear(
+      0, 0.009, 0.035 2.1%, 0.141, 0.281 6.7%, 0.723 12.9%, 0.938 16.7%,
+      1.017, 1.077, 1.121, 1.149 24.3%, 1.159, 1.163, 1.161, 1.154 29.9%,
+      1.129 32.8%, 1.051 39.6%, 1.017 43.1%, 0.991, 0.977 51%, 0.974 53.8%,
+      0.975 57.1%, 0.997 69.8%, 1.003 76.9%, 1
+    );
+  }
+}
+
+/* ---------- ریست و صفحه ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 50px 20px;
+  font-family: "Yekan Bakh", Vazirmatn, Tahoma, sans-serif;
+  font-weight: 500;
+  color: var(--ink);
+  background: var(--page);
+  overflow-x: clip;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------- چیدمان ---------- */
+.cards {
+  width: 100%;
+  max-width: 1008px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 84px;
+}
+
+/* =========================================================
+   کارت
+   ========================================================= */
+.card {
+  --on: 0; /* ۰ یا ۱ ؛ هاور آن را ۱ می‌کند */
+  --mx: 0; /* موقعیت ماوس از -۱ تا ۱ (افقی) */
+  --my: 0; /* موقعیت ماوس از -۱ تا ۱ (عمودی) */
+  --px: 50%; /* موقعیت نور */
+  --py: 30%;
+  --accent: #8bc34a; /* رنگ طعم ؛ در HTML برای هر کارت عوض می‌شود */
+  --tilt-time: 0.6s;
+  --tilt-ease: var(--spring);
+
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 82px 12px;
+  background-color: var(--card);
+  border-radius: 300px;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+
+  /* تیلت سه‌بعدی بر اساس موقعیت ماوس */
+  transform: perspective(1000px) rotateX(calc(var(--my) * -8deg)) rotateY(calc(var(--mx) * 8deg));
+
+  /* سایه‌ی رنگی که با هاور بالا می‌آید */
+  box-shadow: 0 calc(var(--on) * 28px) calc(var(--on) * 50px) calc(var(--on) * -18px)
+    color-mix(in srgb, var(--accent) 55%, transparent);
+
+  transition:
+    transform var(--tilt-time) var(--tilt-ease),
+    scale 0.45s var(--spring),
+    box-shadow 0.5s var(--smooth),
+    background-color 0.5s var(--smooth);
+}
+
+/* وقتی ماوس روی کارت حرکت می‌کند تیلت سریع‌تر دنبالش می‌آید */
+.card.is-tracking {
+  --tilt-time: 0.15s;
+  --tilt-ease: ease-out;
+}
+
+/* حالت هاور و فوکوس کیبورد — تنها قانون هاور کل پروژه */
+.card:is(:hover, :focus-visible) {
+  --on: 1;
+  background-color: color-mix(in srgb, var(--accent) 12%, var(--card));
+}
+
+.card:active {
+  scale: 0.97; /* حس فشرده شدن */
+}
+
+.card:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 8px;
+}
+
+/* هاله‌ی رنگی پشت لیوان */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 12% 8% 22%;
+  z-index: 0;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--accent), transparent);
+  filter: blur(18px);
+  opacity: calc(var(--on) * 0.55);
+  scale: calc(0.4 + var(--on) * 0.6);
+  pointer-events: none;
+  transition:
+    opacity 0.6s var(--smooth),
+    scale 0.9s var(--spring);
+}
+
+/* نور سفیدی که دنبال ماوس می‌آید */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: radial-gradient(220px circle at var(--px) var(--py), rgb(255 255 255 / 0.9), transparent 70%);
+  opacity: var(--on);
+  pointer-events: none;
+  transition: opacity 0.5s var(--smooth);
+}
+
+/* =========================================================
+   میوه‌های پشت لیوان
+   موقعیت‌ها همان اعداد پروژه‌ی خودت است.
+   ========================================================= */
+.fruit {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+
+  /* پارالاکس: میوه‌ها هنگام حرکت ماوس کمی جابه‌جا می‌شوند */
+  translate: calc(var(--mx) * var(--depth) * 1px) calc(var(--my) * var(--depth) * 1px);
+  /* هاور: چرخش + بزرگ‌شدن + محو شدن (تمرکز روی لیوان) */
+  rotate: calc(var(--on) * var(--spin));
+  scale: calc(1 + var(--on) * 0.08);
+  filter: blur(calc(var(--on) * 4px));
+  opacity: calc(1 - var(--on) * 0.15);
+
+  transition:
+    translate 0.25s ease-out,
+    rotate 0.8s var(--spring),
+    scale 0.8s var(--spring),
+    filter 0.4s var(--smooth),
+    opacity 0.4s var(--smooth);
+
+  /* شناور بودن همیشگی */
+  animation: float var(--dur) var(--delay) ease-in-out infinite alternate;
+}
+
+.fruit--back {
+  top: 37px;
+  right: 28px;
+  --depth: -18;
+  --spin: 12deg;
+  --dur: 5s;
+  --delay: -1s;
+}
+
+.fruit--front {
+  bottom: 102px;
+  left: 34px;
+  --depth: 22;
+  --spin: -12deg;
+  --dur: 6s;
+  --delay: -3s;
+}
+
+/* =========================================================
+   لیوان
+   ========================================================= */
+.drink {
+  position: relative;
+  z-index: 2;
+  display: block;
+  user-select: none;
+  transform-origin: 0 80%;
+
+  translate: calc(var(--mx) * 10px) calc(var(--my) * 8px);
+  scale: calc(1 + var(--on) * 0.2);
+  rotate: calc(var(--on) * -10deg);
+  filter: drop-shadow(0 calc(var(--on) * 24px) calc(var(--on) * 22px) rgb(0 0 0 / calc(var(--on) * 0.22)));
+
+  transition:
+    translate 0.25s ease-out,
+    scale 0.8s var(--spring),
+    rotate 0.8s var(--spring),
+    filter 0.5s var(--smooth);
+  /* تأخیر کوتاه فقط هنگام ورود به هاور (هنگام خروج صفر می‌شود) */
+  transition-delay: 0s, calc(var(--on) * 0.1s), calc(var(--on) * 0.1s), 0s;
+}
+
+/* =========================================================
+   متن‌ها
+   ========================================================= */
+.card__title,
+.card__flavor {
+  position: relative;
+  z-index: 2;
+}
+
+.card__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* خط زیر عنوان از راست به چپ کشیده می‌شود */
+.card__title::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: -5px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+  transform-origin: right center;
+  scale: var(--on) 1;
+  transition: scale 0.55s var(--smooth);
+}
+
+.card__flavor {
+  margin: 1em 0;
+  font-weight: 300;
+  white-space: nowrap;
+  color: var(--ink);
+  translate: 0 calc(var(--on) * -2px);
+  transition:
+    color 0.4s var(--smooth),
+    translate 0.6s var(--spring);
+}
+
+.card:is(:hover, :focus-visible) .card__flavor {
+  color: color-mix(in srgb, var(--accent) 65%, #000);
+}
+
+/* =========================================================
+   حباب توضیحات
+   ========================================================= */
+.bubble {
+  --bx: 50%; /* مقدار جابه‌جایی افقی در حالت هاور */
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 3;
+  width: 180px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 50px 12px 50px 12px;
+  box-shadow: 0 18px 40px -14px rgb(0 0 0 / 0.2);
+  pointer-events: none;
+
+  /* از نیمه‌ی راه (۲۵٪) تا جای نهایی (۵۰٪) و از پایین‌تر بالا می‌آید */
+  translate: calc(var(--bx) * (0.5 + var(--on) * 0.5)) calc(70% - var(--on) * 20%);
+  scale: calc(0.5 + var(--on) * 0.5);
+  rotate: calc((1 - var(--on)) * 8deg);
+  transform-origin: 0% 100%;
+  opacity: var(--on);
+
+  transition:
+    opacity 0.35s var(--smooth),
+    translate 0.75s var(--spring),
+    scale 0.75s var(--spring),
+    rotate 0.75s var(--spring);
+}
+
+/* متن‌های داخل حباب یکی‌یکی بالا می‌آیند */
+.bubble__title,
+.bubble__text {
+  margin: 0;
+  opacity: var(--on);
+  translate: 0 calc((1 - var(--on)) * 12px);
+  transition:
+    opacity 0.4s var(--smooth),
+    translate 0.6s var(--spring);
+}
+
+.bubble__title {
+  padding: 16px 36px 0;
+  transition-delay: calc(var(--on) * 0.15s);
+}
+
+.bubble__text {
+  padding: 0 15px 16px;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.7;
+  text-align: center;
+  color: var(--ink-soft);
+  transition-delay: calc(var(--on) * 0.25s);
+}
+
+/* =========================================================
+   ذرات کلیک (توسط جاوااسکریپت ساخته می‌شوند)
+   ========================================================= */
+.fx {
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+  border-radius: 50%;
+  translate: -50% -50%;
+}
+
+.fx--ring {
+  width: 90px;
+  height: 90px;
+  border: 2px solid var(--c);
+}
+
+/* =========================================================
+   انیمیشن‌ها
+   ========================================================= */
+@keyframes float {
+  from {
+    transform: translateY(-6px) rotate(-3deg);
+  }
+  to {
+    transform: translateY(6px) rotate(3deg);
+  }
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    translate: 0 80px;
+    scale: 0.86;
+    filter: blur(12px);
+  }
+}
+
+@keyframes drop-in {
+  from {
+    opacity: 0;
+    translate: 0 -110px;
+    rotate: 18deg;
+    scale: 0.7;
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    scale: 0.2;
+    rotate: -120deg;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    translate: 0 14px;
+    filter: blur(6px);
+  }
+}
+
+/* تا وقتی کارت وارد صفحه نشده، پنهان است (فقط اگر جاوااسکریپت فعال باشد) */
+.js .card:not(.is-in) {
+  opacity: 0;
+}
+
+/* وقتی کارت وارد صفحه شد: ورود پله‌ای با تأخیر بر اساس --i
+   نکته: fill-mode برابر backwards است تا بعد از پایان انیمیشن،
+   هاور دوباره کنترل را به دست بگیرد. */
+.js .card.is-in {
+  animation: card-in 1s calc(var(--i, 0) * 140ms) var(--spring) backwards;
+}
+
+.js .card.is-in .drink {
+  animation: drop-in 1s calc(var(--i, 0) * 140ms + 250ms) var(--spring) backwards;
+}
+
+.js .card.is-in .fruit {
+  animation:
+    pop-in 0.9s calc(var(--i, 0) * 140ms + 450ms) var(--spring) backwards,
+    float var(--dur) var(--delay) ease-in-out infinite alternate;
+}
+
+.js .card.is-in .card__title {
+  animation: rise 0.7s calc(var(--i, 0) * 140ms + 600ms) var(--smooth) backwards;
+}
+
+.js .card.is-in .card__flavor {
+  animation: rise 0.7s calc(var(--i, 0) * 140ms + 720ms) var(--smooth) backwards;
+}
+
+/* =========================================================
+   ریسپانسیو
+   ========================================================= */
+@media (max-width: 480px) {
+  .cards {
+    gap: 56px;
+  }
+  .bubble {
+    --bx: 14%; /* حباب از صفحه بیرون نزند */
+  }
+}
+
+/* =========================================================
+   کاربرانی که حرکت زیاد را نمی‌خواهند
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
+  .js .card:not(.is-in) {
+    opacity: 1;
+  }
+}

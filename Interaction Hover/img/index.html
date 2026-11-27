@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interaction Hover</title>
+
+    <!-- اگر جاوااسکریپت فعال باشد، کلاس js اضافه می‌شود تا انیمیشن ورود کارت‌ها کار کند.
+         اگر غیرفعال باشد، کارت‌ها همیشه دیده می‌شوند. -->
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+    <link rel="stylesheet" href="./app.css" />
+  </head>
+
+  <body>
+    <h1 class="sr-only">آبمیوه‌های طبیعی</h1>
+
+    <main class="cards">
+      <!-- کارت ۱ : کیوی و لیمو -->
+      <article class="card" style="--accent: #8bc34a" tabindex="0">
+        <img class="fruit fruit--back" src="./img/Lemon.png" alt="" draggable="false" />
+        <img class="drink" src="./img/Drink1.png" alt="آبمیوه طبیعی با طعم کیوی و لیمو" draggable="false" />
+        <img class="fruit fruit--front" src="./img/Kiwi.png" alt="" draggable="false" />
+
+        <h2 class="card__title">آبمیوه طبیعی</h2>
+        <p class="card__flavor">با طعم کیوی و لیمو</p>
+
+        <div class="bubble">
+          <p class="bubble__title">طعم بهشت می‌ده!</p>
+          <p class="bubble__text">تکه‌های میوه رو کاملاً حس می‌کنی :)</p>
+        </div>
+      </article>
+
+      <!-- کارت ۲ : پرتقال -->
+      <article class="card" style="--accent: #ff9a2e" tabindex="0">
+        <img class="fruit fruit--back" src="./img/OrangeRed.png" alt="" draggable="false" />
+        <img class="drink" src="./img/Drink2.png" alt="آبمیوه طبیعی با طعم پرتقال" draggable="false" />
+        <img class="fruit fruit--front" src="./img/Orange.png" alt="" draggable="false" />
+
+        <h2 class="card__title">آبمیوه طبیعی</h2>
+        <p class="card__flavor">با طعم پرتقال</p>
+
+        <div class="bubble">
+          <p class="bubble__title">طعم بهشت می‌ده!</p>
+          <p class="bubble__text">تکه‌های میوه رو کاملاً حس می‌کنی :)</p>
+        </div>
+      </article>
+
+      <!-- کارت ۳ : زغال‌اخته و هلو -->
+      <article class="card" style="--accent: #8e7cf8" tabindex="0">
+        <img class="fruit fruit--back" src="./img/Blueberries.png" alt="" draggable="false" />
+        <img class="drink" src="./img/Drink3.png" alt="آبمیوه طبیعی با طعم زغال‌اخته و هلو" draggable="false" />
+        <img class="fruit fruit--front" src="./img/Peach.png" alt="" draggable="false" />
+
+        <h2 class="card__title">آبمیوه طبیعی</h2>
+        <p class="card__flavor">با طعم زغال‌اخته و هلو</p>
+
+        <div class="bubble">
+          <p class="bubble__title">طعم بهشت می‌ده!</p>
+          <p class="bubble__text">تکه‌های میوه رو کاملاً حس می‌کنی :)</p>
+        </div>
+      </article>
+    </main>
+
+    <script>
+      (() => {
+        const cards = document.querySelectorAll(".card");
+        const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+        /* ------------------------------------------------------------
+           ۱) انیمیشن ورود: هر کارت وقتی وارد صفحه شد، پشت‌سرهم ظاهر می‌شود
+           ------------------------------------------------------------ */
+        const reveal = () => {
+          if (!("IntersectionObserver" in window)) {
+            cards.forEach((card) => card.classList.add("is-in"));
+            return;
+          }
+          const io = new IntersectionObserver(
+            (entries) => {
+              entries
+                .filter((entry) => entry.isIntersecting)
+                .forEach((entry, n) => {
+                  entry.target.style.setProperty("--i", n); // ترتیب برای تأخیر پله‌ای
+                  entry.target.classList.add("is-in");
+                  io.unobserve(entry.target);
+                });
+            },
+            { threshold: 0.2 }
+          );
+          cards.forEach((card) => io.observe(card));
+        };
+
+        // صبر می‌کنیم همه‌ی عکس‌ها لود شوند تا ورود کارت‌ها روان باشد
+        if (document.readyState === "complete") reveal();
+        else addEventListener("load", reveal);
+
+        /* ------------------------------------------------------------
+           ۲) جلوه‌ی ذرات آبمیوه هنگام کلیک
+           ------------------------------------------------------------ */
+        const burst = (card, x, y) => {
+          if (reduceMotion) return;
+          const color = getComputedStyle(card).getPropertyValue("--accent").trim() || "#8bc34a";
+
+          const make = (cls, css) => {
+            const el = document.createElement("span");
+            el.className = `fx ${cls}`;
+            el.style.cssText = `left:${x}px;top:${y}px;${css}`;
+            card.append(el);
+            return el;
+          };
+
+          // حلقه‌ی موج
+          const ring = make("fx--ring", `--c:${color}`);
+          ring.animate(
+            [
+              { transform: "scale(.2)", opacity: 0.9 },
+              { transform: "scale(2.4)", opacity: 0 },
+            ],
+            { duration: 700, easing: "cubic-bezier(.2,.7,.2,1)" }
+          ).onfinish = () => ring.remove();
+
+          // قطره‌ها
+          const count = 14;
+          for (let i = 0; i < count; i++) {
+            const size = 6 + Math.random() * 8;
+            const drop = make("fx--drop", `width:${size}px;height:${size}px;background:${color}`);
+            const angle = (i / count) * Math.PI * 2 + Math.random() * 0.4;
+            const dist = 50 + Math.random() * 70;
+            const dx = Math.cos(angle) * dist;
+            const dy = Math.sin(angle) * dist;
+
+            drop.animate(
+              [
+                { transform: "translate(0,0) scale(1)", opacity: 1 },
+                { transform: `translate(${dx}px, ${dy}px) scale(1)`, opacity: 1, offset: 0.6 },
+                { transform: `translate(${dx * 1.15}px, ${dy * 1.15 + 40}px) scale(0)`, opacity: 0 },
+              ],
+              { duration: 650 + Math.random() * 350, easing: "cubic-bezier(.2,.7,.3,1)" }
+            ).onfinish = () => drop.remove();
+          }
+        };
+
+        cards.forEach((card) => {
+          card.addEventListener("pointerdown", (e) => {
+            const r = card.getBoundingClientRect();
+            burst(card, e.clientX - r.left, e.clientY - r.top);
+          });
+
+          // برای کاربرانی که با کیبورد کار می‌کنند
+          card.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              burst(card, card.offsetWidth / 2, card.offsetHeight / 2);
+            }
+          });
+        });
+
+        /* ------------------------------------------------------------
+           ۳) تیلت سه‌بعدی + پارالاکس + نورِ دنبال‌کننده‌ی ماوس
+              فقط روی دستگاه‌هایی که ماوس دارند
+           ------------------------------------------------------------ */
+        if (!finePointer || reduceMotion) return;
+
+        cards.forEach((card) => {
+          let rect = null;
+          let frame = 0;
+          let px = 0;
+          let py = 0;
+
+          const update = () => {
+            frame = 0;
+            if (!rect) return;
+            const nx = (px - rect.left) / rect.width; // ۰ تا ۱
+            const ny = (py - rect.top) / rect.height; // ۰ تا ۱
+            card.style.setProperty("--mx", (nx * 2 - 1).toFixed(3)); // -۱ تا ۱
+            card.style.setProperty("--my", (ny * 2 - 1).toFixed(3));
+            card.style.setProperty("--px", (nx * 100).toFixed(1) + "%");
+            card.style.setProperty("--py", (ny * 100).toFixed(1) + "%");
+          };
+
+          card.addEventListener("pointerenter", () => {
+            rect = card.getBoundingClientRect();
+            card.classList.add("is-tracking");
+          });
+
+          card.addEventListener("pointermove", (e) => {
+            px = e.clientX;
+            py = e.clientY;
+            if (!frame) frame = requestAnimationFrame(update); // حداکثر یک بار در هر فریم
+          });
+
+          card.addEventListener("pointerleave", () => {
+            cancelAnimationFrame(frame);
+            frame = 0;
+            rect = null;
+            card.classList.remove("is-tracking");
+            ["--mx", "--my", "--px", "--py"].forEach((p) => card.style.removeProperty(p));
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
