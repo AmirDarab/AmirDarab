@@ -1,4 +1,4 @@
-# 👾 AMIRALI.Front-End junior 
+# 👾 Amirali-Darab
 ### `Front-End Developer | Future Full-Stack Developer`
 
 <p align="center">
